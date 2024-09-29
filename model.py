@@ -4,11 +4,15 @@ from typing import Dict
 from typing import List
 from typing import Tuple
 
+import os
 import yaml
 
 import src.model_classes as mc 
 
-with open('config.yaml') as f:
+package_dir = os.path.dirname(os.path.abspath(__file__))
+config_fp = os.path.join(package_dir, "config.yaml")
+
+with open(config_fp) as f:
     config = yaml.safe_load(f)
     
 class Model:

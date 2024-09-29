@@ -6,7 +6,11 @@ from typing import Tuple
 
 import pandas as pd
 import numpy as np
+import os
 from scipy.stats import chi2_contingency
+
+package_dir = os.path.dirname(os.path.abspath(__file__))
+main_dir = os.path.abspath(os.path.join(package_dir, ".."))
 
 class Ingest:
     
@@ -146,28 +150,29 @@ class Ingest:
         """
         
         filepath = self.filepath
-        
+        csv_fp = os.path.join(main_dir, filepath)
+
         try:
-            return pd.read_csv(filepath, skiprows=0)
+            return pd.read_csv(csv_fp, skiprows=0)
 
         except FileNotFoundError:
             raise FileNotFoundError(
-                f"The file at {filepath} was not found. Please check the file path."
+                f"The file at {csv_fp} was not found. Please check the file path."
             )
 
         except pd.errors.EmptyDataError:
             raise ValueError(
-                f"The file at {filepath} is empty and cannot be loaded."
+                f"The file at {csv_fp} is empty and cannot be loaded."
             )
 
         except pd.errors.ParserError:
             raise ValueError(
-                f"The file at {filepath} contains malformed data and could not be parsed as a valid CSV."
+                f"The file at {csv_fp} contains malformed data and could not be parsed as a valid CSV."
             )
 
         except PermissionError:
             raise PermissionError(
-                f"Permission denied when attempting to read the file at {filepath}."
+                f"Permission denied when attempting to read the file at {csv_fp}."
                 f"Please check the file permissions."
             )
 
