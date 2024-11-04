@@ -1,5 +1,9 @@
 <h1><b>Instructions</b></h1>
 
+<b>Deployed app:</b>
+https://linen-compiler-440723-k0.uw.r.appspot.com/
+<br>See directory for sample input file `sample_input.csv`
+
 <b>Installation:</b>
 <li>Set up a virtual environment: `equity_toolkit`
 <li>`conda env create -f env.yaml`
@@ -26,8 +30,3 @@ df_prep, tbl = model.prep()
 
 df_result = model.analysis(df_prep.copy(), tbl)
 ```
-
-#to do, add legalese
-#add api reference
-#add use case
-#add a notebooks file
