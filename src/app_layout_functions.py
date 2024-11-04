@@ -133,7 +133,9 @@ def gen_cards(
             html.H3("Equity Toolkit", className="card-title"),
             html.H4("Disparate Impact Testing", className="card-title"),
             html.Br(),
-            html.A("Inquires: HRai Labs", href='https://hrailabs.com', target="_blank", className="card-title")
+            html.A("Inquires: HRai Labs", href='https://hrailabs.com', target="_blank", className="card-title"),
+            html.Br(),
+            html.A("GitHub Open Source Code", href='https://github.com/hrailabs/toolkit', target="_blank", className="card-title")
         ]),
         className="mb-4",
         style={'backgroundColor': '#318ce7', 'color': 'white'}  # Setting background color and text color
