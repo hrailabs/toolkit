@@ -654,7 +654,7 @@ class StatsTesting2x2Cont:
                 diagonals=diagonals,
                 numerator=phi_numerator,
                 denominator=phi_denominator,
-                percent_target_succ=percent_non_target_succ,
+                percent_target_succ=percent_target_succ,
                 percent_non_target_succ=percent_non_target_succ,
             )
             
@@ -666,7 +666,7 @@ class StatsTesting2x2Cont:
         
         df = self._gen_four_fifths_test(
             df,
-            percent_target_succ=percent_non_target_succ,
+            percent_target_succ=percent_target_succ,
             percent_non_target_succ=percent_non_target_succ
         )
                 
@@ -1023,8 +1023,6 @@ class StatsTesting2x2Cont:
         alpha = self.alpha
         four_fifths = df['four_fifths_test'].values[0]
         
-
-
         if result == "Statistically significant result":
             col = f"Testing for {grpers}: {grpers_val}, {four_fifths}\n\nBased on the results of the chi-square test of independence, there is {result} for {testing}-based {process} discrimination against {group_target_val} at the chosen significance level of {alpha}.\n\n"
             col = f"{col}{phi_result}"
