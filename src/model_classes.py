@@ -92,11 +92,11 @@ class Ingest:
             contains the contains the non-target 
             class value e.g. not-hired.
         :var grpers:
-            Dict[str,str], can be any set of filterable
-            columns to slice into particular groups within
-            the broader employee roster. The key is the column,
-            the value is the desired class within the column
-            e.g. job_title: analyst.
+            str, the analysis group
+            e.g. job_title.
+        :var grpers_val:
+            str, the value of the analysis group,
+            e.g. analyst.
         """
         
         config = self.config
@@ -109,7 +109,8 @@ class Ingest:
             self.outcome_variable: str = config["Ingest"]["outcome_variable"]
             self.outcome_target_val: str = config["Ingest"]["outcome_target_val"]
             self.outcome_other_val: str = config["Ingest"]["outcome_other_val"]
-            self.grpers: Dict[str, str] = config["Ingest"]["grpers"]
+            self.grpers: str = config["Ingest"]["grpers"]
+            self.grpers_val: str = config["Ingest"]["grpers_val"]
 
             # Type validation
             if not isinstance(self.filepath, str):
@@ -126,14 +127,16 @@ class Ingest:
                 raise TypeError("Expected 'outcome_target_val' to be of type 'str'.")
             if not isinstance(self.outcome_other_val, str):
                 raise TypeError("Expected 'outcome_other_val' to be of type 'str'.")
-            if not isinstance(self.grpers, dict):
-                raise TypeError("Expected 'grpers' to be of type 'dict'.")
-
+            if not isinstance(self.grpers, str):
+                raise TypeError("Expected 'grpers' to be of type 'str'.")
+            if not isinstance(self.grpers_val, str):
+                raise TypeError("Expected 'grpers_val' to be of type 'str'.")
+                
         except KeyError as e:
             raise KeyError(f"Missing key '{e.args[0]}' in the config file. "
                            "Please ensure the config file contains all required keys under the 'Ingest' section: "
                            "'filepath', 'group_variable', 'group_target_val', 'group_other_val', "
-                           "'outcome_variable', 'outcome_target_val', 'outcome_other_val', and 'grpers'.")
+                           "'outcome_variable', 'outcome_target_val', 'outcome_other_val', 'grpers', and 'grpers_val'.")
 
         except TypeError as e:
             raise TypeError(f"Config file error: {e}")
@@ -203,13 +206,15 @@ class Ingest:
         outcome_target_val = self.outcome_target_val
         outcome_other_val = self.outcome_other_val
         grpers = self.grpers
+        grpers_val = self.grpers_val
 
         df = self._apply_filters(
             df=df,
             group_variable=group_variable,
             group_target_val=group_target_val,
             group_other_val=group_other_val,
-            grpers=grpers
+            grpers=grpers,
+            grpers_val=grpers_val
         )
         
         df = self._apply_harmonize(
@@ -230,11 +235,12 @@ class Ingest:
         group_variable: str,
         group_target_val: str,
         group_other_val: str,
-        grpers: Dict[str,str],
+        grpers: str,
+        grpers_val: str
     ) -> DataFrame:
         
         """
-        Method to apply filters
+        Method to apply filters.
         
         :param df:
             DataFrame, target df
@@ -247,6 +253,10 @@ class Ingest:
         :param group_other_val:
             str, class nontarget value of the group_variable
             aka the nonprotected class value
+        :param grpers:
+            str, the name of the analysis group.
+        :param grpers_val:
+            str, the value of the analysis group.
         :return df:
             DataFrame, filtered df
         """
@@ -258,13 +268,11 @@ class Ingest:
                     group_other_val
                 ]
             )
+        ]  
+            
+        df = df.loc[
+            df[grpers]==grpers_val
         ]
-        
-        for k, v in grpers.items():
-        
-            df = df.loc[
-                df[k].isin([v])
-            ]  
             
         return df
     
@@ -486,7 +494,9 @@ class StatsTesting2x2Cont:
             self.outcome_variable: str = config["Ingest"]["outcome_variable"]
             self.outcome_target_val: str = config["Ingest"]["outcome_target_val"]
             self.outcome_other_val: str = config["Ingest"]["outcome_other_val"]
-            self.grpers: Dict[str, str] = config["Ingest"]["grpers"]
+            self.grpers: str = config["Ingest"]["grpers"]
+            self.grpers_val: str = config["Ingest"]["grpers_val"]
+            
             self.testing: str = config["StatsTesting2x2Cont"]["testing"]
             self.process: str = config["StatsTesting2x2Cont"]["process"]
             self.bin_edges: List[float] = config["StatsTesting2x2Cont"]["phi_bin_edges"]
@@ -506,8 +516,10 @@ class StatsTesting2x2Cont:
                 raise TypeError("Expected 'outcome_target_val' to be of type 'str'.")
             if not isinstance(self.outcome_other_val, str):
                 raise TypeError("Expected 'outcome_other_val' to be of type 'str'.")
-            if not isinstance(self.grpers, dict):
-                raise TypeError("Expected 'grpers' to be of type 'dict'.")
+            if not isinstance(self.grpers, str):
+                raise TypeError("Expected 'grpers' to be of type 'str'.")
+            if not isinstance(self.grpers_val, str):
+                raise TypeError("Expected 'grpers' to be of type 'str'.")
             if not isinstance(self.testing, str):
                 raise TypeError("Expected 'testing' to be of type 'str'.")
             if not isinstance(self.process, str):
@@ -1002,6 +1014,7 @@ class StatsTesting2x2Cont:
         """
         
         grpers = self.grpers
+        grpers_val = self.grpers_val
         result = df['test_result'].values[0]
         phi_col = df['phi_corr_coeff'].values[0]
         testing = self.testing
@@ -1010,9 +1023,10 @@ class StatsTesting2x2Cont:
         alpha = self.alpha
         four_fifths = df['four_fifths_test'].values[0]
         
-        col = f"Testing for {grpers}, {four_fifths}\n\nBased on the results of the chi-square test of independence, there is {result} for {testing}-based {process} discrimination against {group_target_val} at the chosen significance level of {alpha}.\n\n"
+
 
         if result == "Statistically significant result":
+            col = f"Testing for {grpers}: {grpers_val}, {four_fifths}\n\nBased on the results of the chi-square test of independence, there is {result} for {testing}-based {process} discrimination against {group_target_val} at the chosen significance level of {alpha}.\n\n"
             col = f"{col}{phi_result}"
         else: 
             col = ""

@@ -10,10 +10,10 @@ import yaml
 import src.model_classes as mc 
 
 package_dir = os.path.dirname(os.path.abspath(__file__))
-config_fp = os.path.join(package_dir, "config.yaml")
+config_fp = os.path.join(package_dir, "config_app.yaml")
 
 with open(config_fp) as f:
-    config = yaml.safe_load(f)
+    config_app = yaml.safe_load(f)
     
 class Model:
     
@@ -23,13 +23,14 @@ class Model:
     
     def __init__(
         self,
+        df: DataFrame,
         config: Dict[str, Any]
     ):
         
         """
         
         """
-        
+        self.df = df
         self.config = config
 
     def prep(
@@ -40,11 +41,12 @@ class Model:
         
         """
         
+        df = self.df
         config = self.config
         
         # ingest
         prep = mc.Ingest(config)
-        df_prep: DataFrame = prep.run()
+        df_prep: DataFrame = prep.run_harmonize(df)
 
         # transform
         trans = mc.Transform(df=df_prep)
@@ -64,8 +66,10 @@ class Model:
         
         config = self.config
 
+        combined_config = {**config, **config_app}
+
         stats = mc.StatsTesting2x2Cont(
-            config=config,
+            config=combined_config,
             tbl=tbl,
             df=df_prep
         )

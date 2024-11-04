@@ -5,6 +5,13 @@ def gen_card_1_results(
     df_results: DataFrame
 ) -> str:
     
+    return ''
+
+    
+def gen_card_2_results(
+    df_results: DataFrame
+) -> str:
+    
     four_fifths_test = df_results['four_fifths_test'].values[0]
     
     test_result = df_results['test_result'].values[0]
@@ -12,23 +19,17 @@ def gen_card_1_results(
     dof = round(df_results['dof'].values[0],2)
     statistic = round(df_results['statistic'].values[0],2)
     alpha = round(df_results['alpha'].values[0],2)
-    display = f"""{four_fifths_test}
+    display_2a = f"""{four_fifths_test}
     
 {test_result}: 
 pvalue: {pval}
 degrees of freedom: {dof}
 alpha: {alpha}
 statistic: {statistic}"""
-    
-    return display
-    
-def gen_card_2_results(
-    df_results: DataFrame
-) -> str:
-    
-    display = df_results['result_desc'].values[0]
         
-    return display
+    display_2b = df_results['result_desc'].values[0]
+        
+    return display_2a, display_2b
     
 def gen_card_3_results(
     df_results: DataFrame

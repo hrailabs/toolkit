@@ -6,7 +6,8 @@ Ingest:
   outcome_variable: outcome
   outcome_target_val: hired
   outcome_other_val: not_hired
-  grpers: {job_title: analyst}
+  grpers: job_title
+  grpers_val: analyst
 
 StatsTesting2x2Cont:
   testing: gender
