@@ -1,0 +1,72 @@
+worker_id,job_title,region,country,gen,outcome
+1,head FP&A,na,usa,Female,not_hired
+2,head FP&A,na,usa,Male,not_hired
+3,head FP&A,na,usa,Male,not_hired
+4,head FP&A,na,usa,Female,not_hired
+5,head FP&A,na,usa,Male,not_hired
+6,head FP&A,na,usa,Male,not_hired
+7,head FP&A,na,usa,Female,not_hired
+8,head FP&A,na,usa,Female,not_hired
+9,head FP&A,na,usa,Female,hired
+10,head FP&A,na,usa,Female,hired
+11,head FP&A,na,usa,Male,hired
+12,head FP&A,na,usa,Male,hired
+13,head FP&A,emea,uk,Male,hired
+14,analyst,na,usa,Male,hired
+15,analyst,latam,brazil,Male,hired
+16,analyst,na,canada,Male,hired
+17,analyst,na,canada,Male,hired
+18,analyst,na,canada,Male,hired
+19,analyst,emea,uk,Male,hired
+20,analyst,apac,singapore,Male,hired
+21,analyst,apac,singapore,Male,hired
+22,analyst,apac,singapore,Female,hired
+23,analyst,apac,singapore,Male,hired
+24,analyst,apac,singapore,Male,not_hired
+25,analyst,apac,singapore,Female,not_hired
+26,analyst,apac,singapore,Female,not_hired
+27,analyst,apac,singapore,Female,not_hired
+28,analyst,latam,mexico,Female,not_hired
+29,analyst,latam,mexico,Female,not_hired
+30,analyst,latam,mexico,Male,not_hired
+32,analyst,latam,mexico,Male,not_hired
+33,analyst,apac,singapore,Male,not_hired
+34,analyst,apac,singapore,Male,not_hired
+35,analyst,apac,singapore,Male,not_hired
+36,analyst,apac,singapore,Male,not_hired
+37,analyst,na,usa,Male,not_hired
+38,analyst,emea,uk,Male,not_hired
+39,analyst,india,india,Male,not_hired
+40,analyst,na,canada,Male,not_hired
+42,analyst,apac,korea,Male,not_hired
+43,analyst,emea,egypt,Male,hired
+44,analyst,emea,russia,Male,hired
+14,analyst,na,usa,Male,hired
+15,analyst,latam,brazil,Male,hired
+16,analyst,na,canada,Male,hired
+17,analyst,na,canada,Male,hired
+18,analyst,na,canada,Male,hired
+19,analyst,emea,uk,Male,hired
+20,analyst,apac,singapore,Male,hired
+21,analyst,apac,singapore,Male,not_hired
+22,analyst,apac,singapore,Female,not_hired
+23,analyst,apac,singapore,Male,not_hired
+24,analyst,apac,singapore,Male,not_hired
+25,analyst,apac,singapore,Female,not_hired
+26,analyst,apac,singapore,Female,not_hired
+27,analyst,apac,singapore,Female,not_hired
+28,analyst,latam,mexico,Female,not_hired
+29,head FP&A,latam,mexico,Female,not_hired
+30,head FP&A,latam,mexico,Male,not_hired
+32,head FP&A,latam,mexico,Male,not_hired
+33,head FP&A,apac,singapore,Male,not_hired
+34,head FP&A,apac,singapore,Male,not_hired
+35,head FP&A,apac,singapore,Female,not_hired
+36,head FP&A,apac,singapore,Female,not_hired
+37,head FP&A,na,usa,Male,hired
+38,head FP&A,emea,uk,Male,hired
+39,head FP&A,india,india,Male,hired
+40,head FP&A,na,canada,Male,hired
+42,head FP&A,apac,korea,Male,hired
+43,head FP&A,emea,egypt,Male,hired
+44,head FP&A,emea,russia,Male,hired

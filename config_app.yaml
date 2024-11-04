@@ -1,0 +1,17 @@
+StatsTesting2x2Cont:
+  testing: gender
+  process: hiring
+  alpha: 0.05
+  phi_bin_edges:
+    - -1
+    - -0.5
+    - -0.10
+    - 0.10
+    - 0.5
+    - 1
+  phi_bin_labels:
+    - very low
+    - low
+    - around zero
+    - moderate
+    - high
