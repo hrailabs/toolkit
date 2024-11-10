@@ -1,5 +1,14 @@
-<img src="images/my-thumbnail.jpg" alt="Thumbnail" width="200" height="200">
+<img src="images/1920x600.png" alt="Thumbnail" width="1000" height="200">
+https://hrailabs.com
 <br>
+<br>Welcome to the equity-toolkit!
+<br>
+<br>Here we've provided open and transparent code that can be used for disparate impacting testing.
+<br>
+<br>Try out our deployed app: https://app.hrailabs.com
+<br>
+<br>Like to contribute? Reach out to <a href="mailto:jfeld@hrailabs.com">jfeld@hrailabs.com</a>.
+
 <h1><b>Instructions</b></h1>
 
 <b>Deployed app:</b>
