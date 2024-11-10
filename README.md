@@ -1,7 +1,9 @@
+<img src="images/my-thumbnail.jpg" alt="Thumbnail" width="200" height="200">
+<br>
 <h1><b>Instructions</b></h1>
 
 <b>Deployed app:</b>
-https://linen-compiler-440723-k0.uw.r.appspot.com/
+https://app.hrailabs.com
 <br>See directory for sample input file `sample_input.csv`
 
 <b>Installation:</b>
